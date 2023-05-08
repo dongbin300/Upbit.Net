@@ -10,7 +10,7 @@ namespace Upbit.Net.Clients.ExchangeApis
         {
         }
 
-        public async Task<IEnumerable<UpbitTransfer>> GetDepositListAsync(string currency, string state, IEnumerable<string> uuids, IEnumerable<string> txids, int limit = 100, int page = 1, UpbitSortType sortType = UpbitSortType.desc)
+        public async Task<IEnumerable<UpbitTransfer>> GetDepositListAsync(string currency = "", string state = "", IEnumerable<string>? uuids = null, IEnumerable<string>? txids = null, int limit = 100, int page = 1, UpbitSortType sortType = UpbitSortType.desc)
         {
             var parameters = new Dictionary<string, string>()
             {
