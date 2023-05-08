@@ -21,5 +21,15 @@
 
             return string.Join("&", values.ToString());
         }
+
+        public static string ToCommaString(this IEnumerable<string>? strings)
+        {
+            if (strings == null || !strings.Any())
+            {
+                return string.Empty;
+            }
+
+            return string.Join(",", strings);
+        }
     }
 }

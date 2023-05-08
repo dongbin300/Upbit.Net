@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Upbit.Net.Interfaces;
-using Upbit.Net.Objects.Models.Exchanges;
+﻿using Upbit.Net.Extensions;
+using Upbit.Net.Objects.Models.Quotations;
 
 namespace Upbit.Net.Clients.QuotationApis
 {
@@ -15,9 +9,14 @@ namespace Upbit.Net.Clients.QuotationApis
         {
         }
 
-        public async Task<IEnumerable<UpbitAccount>> GetOverallAccount()
+        public async Task<IEnumerable<UpbitTicker>> GetTickersAsync(IEnumerable<string> marketIds)
         {
-            return await GetAsync<IEnumerable<UpbitAccount>>(Client, "https://api.upbit.com/v1/accounts").ConfigureAwait(false);
+            var parameters = new Dictionary<string, string>()
+            {
+                { "markets", marketIds.ToCommaString() }
+            };
+
+            return await GetAsync<IEnumerable<UpbitTicker>>(Client, "https://api.upbit.com/v1/ticker" + SetJwtToken(parameters)).ConfigureAwait(false);
         }
     }
 }

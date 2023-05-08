@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
@@ -21,8 +22,13 @@ namespace Upbit.Net.Examples
             var secretKey = keyData[1];
 
             var client = new UpbitClient(accessKey, secretKey);
-            var result = client.Order.GetIndividualOrderAsync("0549614f-d19c-4362-96c3-210494127b83");
+            var result = client.QuotationOrderBook.GetOrderBooksAsync(new List<string>()
+            {
+                "KRW-GAS",
+                "KRW-BTC"
+            });
             result.Wait();
+
             var data = result.Result;
         }
     }

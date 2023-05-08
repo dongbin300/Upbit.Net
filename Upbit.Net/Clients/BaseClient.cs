@@ -7,7 +7,6 @@ using System.Security.Cryptography;
 using System.Text;
 
 using Upbit.Net.Interfaces;
-using Upbit.Net.Objects;
 
 namespace Upbit.Net.Clients
 {
@@ -142,7 +141,7 @@ namespace Upbit.Net.Clients
         /// <param name="parameters"></param>
         /// <returns>Query string</returns>
         /// <seealso cref="https://docs.upbit.com/docs/create-authorization-request#jwt-%EC%9D%B8%EC%A6%9D-%ED%86%A0%ED%81%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0"/>
-        public string SetJwtToken(IDictionary<string, string>? parameters = null)
+        protected string SetJwtToken(IDictionary<string, string>? parameters = null)
         {
             string queryString = string.Empty;
             string queryHash = string.Empty;
