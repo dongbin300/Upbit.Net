@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Upbit.Net.Interfaces;
-using Upbit.Net.Objects.Models.Exchanges;
+﻿using Upbit.Net.Objects.Models.Exchanges;
 
 namespace Upbit.Net.Clients.ExchangeApis
 {
@@ -15,9 +8,14 @@ namespace Upbit.Net.Clients.ExchangeApis
         {
         }
 
-        public async Task<IEnumerable<UpbitAccount>> GetOverallAccount()
+        public async Task<IEnumerable<UpbitWalletStatus>> GetWalletStatusAsync()
         {
-            return await GetAsync<IEnumerable<UpbitAccount>>(Client, "https://api.upbit.com/v1/accounts").ConfigureAwait(false);
+            return await GetAsync<IEnumerable<UpbitWalletStatus>>(Client, "https://api.upbit.com/v1/status/wallet" + SetJwtToken()).ConfigureAwait(false);
+        }
+
+        public async Task<IEnumerable<UpbitApiKey>> GetApiKeyListAsync()
+        {
+            return await GetAsync<IEnumerable<UpbitApiKey>>(Client, "https://api.upbit.com/v1/api_keys" + SetJwtToken()).ConfigureAwait(false);
         }
     }
 }
